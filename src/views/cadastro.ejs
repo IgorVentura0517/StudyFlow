@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="/css/style.css">
 <h1>Cadastro</h1>
 
-<form action="/cadastro" method="POST">
+<form action="/cadastro" method="POST" data-validar>
   <input type="text" name="nome" placeholder="Nome" required>
   <input type="email" name="email" placeholder="E-mail" required>
   <input type="password" name="senha" placeholder="Senha" required>
@@ -9,3 +10,5 @@
 </form>
 
 <a href="/login">Já tenho conta</a>
+
+<script src="/js/validacao.js"></script>

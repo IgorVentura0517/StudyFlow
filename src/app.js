@@ -31,3 +31,4 @@ app.get("/dashboard", authMiddleware, DashboardController.index);
 
 app.use(disciplinaRoutes);
 app.use(tarefaRoutes);
+app.use(express.static(path.join(__dirname, "../public")));

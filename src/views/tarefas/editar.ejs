@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="/css/style.css">
 <h1>Editar tarefa</h1>
 
-<form action="/tarefas/editar/<%= tarefa.id %>" method="POST">
+<form action="/tarefas/editar/<%= tarefa.id %>" method="POST" data-validar>
   <input type="text" name="titulo" value="<%= tarefa.titulo %>" required>
 
   <textarea name="descricao"><%= tarefa.descricao %></textarea>
@@ -31,3 +32,5 @@
 </form>
 
 <a href="/tarefas">Voltar</a>
+
+<script src="/js/validacao.js"></script>

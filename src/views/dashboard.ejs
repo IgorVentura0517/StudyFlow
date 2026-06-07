@@ -1,18 +1,53 @@
-<h1>Dashboard</h1>
+<link rel="stylesheet" href="/css/style.css">
 
-<p>Olá, <%= usuario.nome %>!</p>
+<header>
+  <h1>StudyFlow</h1>
 
-<h2>Resumo</h2>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/tarefas">Tarefas</a>
+  </nav>
+</header>
 
-<p>Total de disciplinas: <%= totalDisciplinas %></p>
-<p>Total de tarefas: <%= resumoTarefas.total || 0 %></p>
-<p>Pendentes: <%= resumoTarefas.pendentes || 0 %></p>
-<p>Em andamento: <%= resumoTarefas.em_andamento || 0 %></p>
-<p>Concluídas: <%= resumoTarefas.concluidas || 0 %></p>
+<main>
+  <section class="card">
+    <h2>Bem-vindo</h2>
+    <p>Olá, <%= usuario.nome %>!</p>
+  </section>
 
-<a href="/disciplinas">Minhas Disciplinas</a>
-<a href="/tarefas">Minhas Tarefas</a>
+  <section class="dashboard-cards">
+    <article class="card">
+      <h3>Disciplinas</h3>
+      <p><%= totalDisciplinas %></p>
+    </article>
 
-<form action="/logout" method="POST">
-  <button type="submit">Sair</button>
-</form>
+    <article class="card">
+      <h3>Total de tarefas</h3>
+      <p><%= resumoTarefas.total || 0 %></p>
+    </article>
+
+    <article class="card">
+      <h3>Pendentes</h3>
+      <p><%= resumoTarefas.pendentes || 0 %></p>
+    </article>
+
+    <article class="card">
+      <h3>Em andamento</h3>
+      <p><%= resumoTarefas.em_andamento || 0 %></p>
+    </article>
+
+    <article class="card">
+      <h3>Concluídas</h3>
+      <p><%= resumoTarefas.concluidas || 0 %></p>
+    </article>
+  </section>
+
+  <form action="/logout" method="POST">
+    <button type="submit">Sair</button>
+  </form>
+</main>
+
+<footer>
+  <p>StudyFlow © 2026</p>
+</footer>

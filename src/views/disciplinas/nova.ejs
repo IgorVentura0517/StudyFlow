@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="/css/style.css">
 <h1>Nova disciplina</h1>
 
-<form action="/disciplinas" method="POST">
+<form action="/disciplinas" method="POST" data-validar>
   <input type="text" name="nome" placeholder="Nome da disciplina" required>
   <textarea name="descricao" placeholder="Descrição"></textarea>
 
@@ -8,3 +9,5 @@
 </form>
 
 <a href="/disciplinas">Voltar</a>
+
+<script src="/js/validacao.js"></script>
