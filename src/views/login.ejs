@@ -16,8 +16,17 @@
   </header>
 
   <main class="auth-container">
-    <div class="card-cadastro"> <h1>Bem-vindo!</h1>
+    <div class="card-cadastro">
+      <h1>Bem-vindo!</h1>
       <p class="h1-sub">Acesse sua conta para continuar seus estudos.</p>
+
+      <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+        <div class="alert alert-error"><%= mensagemErro %></div>
+      <% } %>
+
+      <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
+        <div class="alert alert-success"><%= mensagemSucesso %></div>
+      <% } %>
 
       <form action="/login" method="POST" data-validar>
         <div class="form-group">

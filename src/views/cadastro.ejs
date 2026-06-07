@@ -20,13 +20,27 @@
       <h1>Olá!</h1>
       <p class="h1-sub">Crie sua conta para começar a organizar sua vida acadêmica.</p>
 
+      <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+        <div class="alert alert-error">
+          <%= mensagemErro %>
+        </div>
+      <% } %>
+
+      <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
+        <div class="alert alert-success">
+          <%= mensagemSucesso %>
+        </div>
+      <% } %>
+
       <form action="/cadastro" method="POST" data-validar>
         <div class="form-group">
           <input type="text" name="nome" id="nome" placeholder="Nome" required>
         </div>
+
         <div class="form-group">
           <input type="email" name="email" id="email" placeholder="E-mail" required>
         </div>
+
         <div class="form-group">
           <input type="password" name="senha" id="senha" placeholder="Senha" required>
         </div>

@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 
 class AuthController {
+
   static showCadastro(req, res) {
     res.render("cadastro");
   }
@@ -13,17 +14,33 @@ class AuthController {
       const usuarioExiste = await User.findByEmail(email);
 
       if (usuarioExiste) {
-        return res.send("E-mail já cadastrado.");
+        req.session.mensagemErro =
+          "Este e-mail já está cadastrado.";
+
+        return res.redirect("/cadastro");
       }
 
       const senhaHash = await bcrypt.hash(senha, 10);
 
-      await User.create(nome, email, senhaHash);
+      await User.create(
+        nome,
+        email,
+        senhaHash
+      );
 
-      res.redirect("/login");
+      req.session.mensagemSucesso =
+        "Cadastro realizado com sucesso! Faça login para continuar.";
+
+      return res.redirect("/login");
+
     } catch (erro) {
+
       console.error(erro);
-      res.send("Erro ao cadastrar usuário.");
+
+      req.session.mensagemErro =
+        "Erro ao cadastrar usuário.";
+
+      return res.redirect("/cadastro");
     }
   }
 
@@ -33,18 +50,31 @@ class AuthController {
 
   static async login(req, res) {
     try {
+
       const { email, senha } = req.body;
 
       const usuario = await User.findByEmail(email);
 
       if (!usuario) {
-        return res.send("Usuário não encontrado.");
+
+        req.session.mensagemErro =
+          "E-mail ou senha incorretos.";
+
+        return res.redirect("/login");
       }
 
-      const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
+      const senhaCorreta =
+        await bcrypt.compare(
+          senha,
+          usuario.senha
+        );
 
       if (!senhaCorreta) {
-        return res.send("Senha incorreta.");
+
+        req.session.mensagemErro =
+          "E-mail ou senha incorretos.";
+
+        return res.redirect("/login");
       }
 
       req.session.usuario = {
@@ -53,10 +83,16 @@ class AuthController {
         email: usuario.email
       };
 
-      res.redirect("/dashboard");
+      return res.redirect("/dashboard");
+
     } catch (erro) {
+
       console.error(erro);
-      res.send("Erro ao fazer login.");
+
+      req.session.mensagemErro =
+        "Erro ao fazer login.";
+
+      return res.redirect("/login");
     }
   }
 
