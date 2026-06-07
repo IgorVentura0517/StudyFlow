@@ -11,6 +11,13 @@
 </header>
 
 <main>
+  <% if (mensagemSucesso) { %>
+  <p class="alert alert-success"><%= mensagemSucesso %></p>
+  <% } %>
+
+  <% if (mensagemErro) { %>
+    <p class="alert alert-error"><%= mensagemErro %></p>
+  <% } %>
   <section class="card">
     <h2>Minhas disciplinas</h2>
     <a href="/disciplinas/nova">Nova disciplina</a>

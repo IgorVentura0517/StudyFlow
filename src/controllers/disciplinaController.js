@@ -18,6 +18,8 @@ class DisciplinaController {
 
     await Disciplina.create(usuarioId, nome, descricao);
 
+    req.session.mensagemSucesso = "Disciplina criada com sucesso!";
+
     res.redirect("/disciplinas");
   }
 
@@ -37,6 +39,8 @@ class DisciplinaController {
 
     await Disciplina.update(id, usuarioId, nome, descricao);
 
+    req.session.mensagemSucesso = "Disciplina atualizada com sucesso!";
+
     res.redirect("/disciplinas");
   }
 
@@ -45,6 +49,8 @@ class DisciplinaController {
     const { id } = req.params;
 
     await Disciplina.delete(id, usuarioId);
+
+    req.session.mensagemSucesso = "Disciplina excluída com sucesso!";
 
     res.redirect("/disciplinas");
   }

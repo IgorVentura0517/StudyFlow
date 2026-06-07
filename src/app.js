@@ -21,6 +21,16 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use((req, res, next) => {
+  res.locals.mensagemSucesso = req.session.mensagemSucesso;
+  res.locals.mensagemErro = req.session.mensagemErro;
+
+  delete req.session.mensagemSucesso;
+  delete req.session.mensagemErro;
+
+  next();
+});
+
 app.use(authRoutes);
 
 app.listen(3000, () => {

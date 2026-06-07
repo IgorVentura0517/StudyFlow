@@ -4,7 +4,6 @@ const Disciplina = require("../models/Disciplina");
 class TarefaController {
   static async listar(req, res) {
     const usuarioId = req.session.usuario.id;
-
     const tarefas = await Tarefa.findAllByUser(usuarioId);
 
     res.render("tarefas/index", { tarefas });
@@ -12,7 +11,6 @@ class TarefaController {
 
   static async nova(req, res) {
     const usuarioId = req.session.usuario.id;
-
     const disciplinas = await Disciplina.findAllByUser(usuarioId);
 
     res.render("tarefas/nova", { disciplinas });
@@ -31,6 +29,8 @@ class TarefaController {
       prioridade,
       dataEntrega
     });
+
+    req.session.mensagemSucesso = "Tarefa criada com sucesso!";
 
     res.redirect("/tarefas");
   }
@@ -60,14 +60,17 @@ class TarefaController {
       dataEntrega
     });
 
+    req.session.mensagemSucesso = "Tarefa atualizada com sucesso!";
+
     res.redirect("/tarefas");
   }
-
-  static async excluir(req, res) {
+static async excluir(req, res) {
     const usuarioId = req.session.usuario.id;
     const { id } = req.params;
 
     await Tarefa.delete(id, usuarioId);
+
+    req.session.mensagemSucesso = "Tarefa excluída com sucesso!";
 
     res.redirect("/tarefas");
   }
@@ -77,6 +80,8 @@ class TarefaController {
     const { id } = req.params;
 
     await Tarefa.concluir(id, usuarioId);
+
+    req.session.mensagemSucesso = "Tarefa concluída com sucesso!";
 
     res.redirect("/tarefas");
   }

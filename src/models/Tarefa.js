@@ -100,6 +100,6 @@ static async getProximasEntregas(usuarioId) {
    return rows;
 }
 
-
+}
 
 module.exports = Tarefa;
