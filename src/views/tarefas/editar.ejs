@@ -1,0 +1,33 @@
+<h1>Editar tarefa</h1>
+
+<form action="/tarefas/editar/<%= tarefa.id %>" method="POST">
+  <input type="text" name="titulo" value="<%= tarefa.titulo %>" required>
+
+  <textarea name="descricao"><%= tarefa.descricao %></textarea>
+
+  <select name="disciplinaId" required>
+    <% disciplinas.forEach(disciplina => { %>
+      <option value="<%= disciplina.id %>" <%= disciplina.id === tarefa.disciplina_id ? "selected" : "" %>>
+        <%= disciplina.nome %>
+      </option>
+    <% }) %>
+  </select>
+
+  <select name="status" required>
+    <option value="Pendente" <%= tarefa.status === "Pendente" ? "selected" : "" %>>Pendente</option>
+    <option value="Em andamento" <%= tarefa.status === "Em andamento" ? "selected" : "" %>>Em andamento</option>
+    <option value="Concluída" <%= tarefa.status === "Concluída" ? "selected" : "" %>>Concluída</option>
+  </select>
+
+  <select name="prioridade" required>
+    <option value="Baixa" <%= tarefa.prioridade === "Baixa" ? "selected" : "" %>>Baixa</option>
+    <option value="Média" <%= tarefa.prioridade === "Média" ? "selected" : "" %>>Média</option>
+    <option value="Alta" <%= tarefa.prioridade === "Alta" ? "selected" : "" %>>Alta</option>
+  </select>
+
+  <input type="date" name="dataEntrega" value="<%= tarefa.data_entrega ? tarefa.data_entrega.toISOString().split('T')[0] : '' %>">
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<a href="/tarefas">Voltar</a>

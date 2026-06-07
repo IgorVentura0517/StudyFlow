@@ -4,6 +4,7 @@ const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middlewares/authMiddleware");
 const disciplinaRoutes = require("./routes/disciplinaRoutes");
+const tarefaRoutes = require("./routes/tarefaRoutes");
 
 const app = express();
 
@@ -31,3 +32,4 @@ app.get("/dashboard", authMiddleware,
   });
 
 app.use(disciplinaRoutes);
+app.use(tarefaRoutes);

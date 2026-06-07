@@ -1,0 +1,26 @@
+<h1>Nova tarefa</h1>
+
+<form action="/tarefas" method="POST">
+  <input type="text" name="titulo" placeholder="Título da tarefa" required>
+
+  <textarea name="descricao" placeholder="Descrição"></textarea>
+
+  <select name="disciplinaId" required>
+    <option value="">Selecione uma disciplina</option>
+    <% disciplinas.forEach(disciplina => { %>
+      <option value="<%= disciplina.id %>"><%= disciplina.nome %></option>
+    <% }) %>
+  </select>
+
+  <select name="prioridade" required>
+    <option value="Baixa">Baixa</option>
+    <option value="Média" selected>Média</option>
+    <option value="Alta">Alta</option>
+  </select>
+
+  <input type="date" name="dataEntrega">
+
+  <button type="submit">Salvar</button>
+</form>
+
+<a href="/tarefas">Voltar</a>
