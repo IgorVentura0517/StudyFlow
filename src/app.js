@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
+const authMiddleware = require("./middlewares/authMiddleware");
 
 const app = express();
 
@@ -22,3 +23,8 @@ app.use(authRoutes);
 app.listen(3000, () => {
   console.log("Servidor rodando...");
 });
+
+app.get("/dashboard", authMiddleware, 
+  (req, res) =>{
+    res.render("dashboard", {usuario: req.session.usuario});
+  });
