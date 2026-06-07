@@ -1,35 +1,107 @@
-<link rel="stylesheet" href="/css/style.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Disciplina - StudyFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-body">
 
-<header>
-  <h1>StudyFlow</h1>
+  <div class="dashboard-layout">
 
-  <nav>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/disciplinas">Disciplinas</a>
-    <a href="/tarefas">Tarefas</a>
-  </nav>
-</header>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Study<span class="sub">Flow</span></h2>
+      </div>
 
-<main>
-  <section class="card">
-    <h2>Editar disciplina</h2>
+      <nav class="sidebar-nav">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/disciplinas" class="active">Disciplinas</a>
+        <a href="/tarefas">Tarefas</a>
+      </nav>
 
-    <form action="/disciplinas/editar/<%= disciplina.id %>" method="POST" data-validar>
-      <label>Nome</label>
-      <input type="text" name="nome" value="<%= disciplina.nome %>" required>
+      <div class="sidebar-footer">
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn-logout">Sair da conta</button>
+        </form>
+      </div>
+    </aside>
 
-      <label>Descrição</label>
-      <textarea name="descricao"><%= disciplina.descricao %></textarea>
+    <main class="main-content">
 
-      <button type="submit">Atualizar</button>
-    </form>
+      <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
+        <div class="alert alert-success"><%= mensagemSucesso %></div>
+      <% } %>
+      <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+        <div class="alert alert-error"><%= mensagemErro %></div>
+      <% } %>
 
-    <a href="/disciplinas">Voltar</a>
-  </section>
-</main>
+      <section class="welcome-banner card-shadow">
+        <div class="welcome-text">
+          <h1>Editar Disciplina</h1>
+          <p>Atualize as informações da disciplina abaixo.</p>
+        </div>
+      </section>
 
-<footer>
-  <p>StudyFlow © 2026</p>
-</footer>
+      <section class="card-shadow" style="padding: 2rem; margin-bottom: 2rem;">
 
-<script src="/js/validacao.js"></script>
+        <form action="/disciplinas/editar/<%= disciplina.id %>" method="POST" data-validar>
+
+          <div class="form-group">
+            <label for="nome">Nome da disciplina</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              value="<%= disciplina.nome %>"
+              placeholder="Ex: Cálculo I"
+              required
+            >
+          </div>
+
+          <div class="form-group" style="margin-top: 1.25rem;">
+            <label for="descricao">Descrição</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              placeholder="Descreva o conteúdo ou objetivo da disciplina..."
+              rows="4"
+            ><%= disciplina.descricao %></textarea>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
+            <button type="submit" class="btn-primary" style="margin-top: 0; width: auto; padding: 0.9rem 2rem;">
+              Salvar alterações
+            </button>
+            <a href="/disciplinas" style="
+              display: inline-flex;
+              align-items: center;
+              padding: 0.9rem 1.5rem;
+              border: 1px solid #e5e7eb;
+              border-radius: 0.75rem;
+              color: #6b7280;
+              font-weight: 500;
+              text-decoration: none;
+              font-size: 1rem;
+              transition: background 0.2s;
+            ">Voltar</a>
+          </div>
+
+        </form>
+
+      </section>
+
+      <footer class="dashboard-footer">
+        <p>StudyFlow © 2026</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="/js/validacao.js"></script>
+</body>
+</html>
