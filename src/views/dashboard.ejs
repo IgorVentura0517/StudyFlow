@@ -1,7 +1,9 @@
 <h1>Dashboard</h1>
 
-<p>Olá, <%=usuario.nome %>!</p>
+<p>Olá, <%= usuario.nome %>!</p>
+
+<a href="/disciplinas">Minhas disciplinas</a>
 
 <form action="/logout" method="POST">
-    <button type="submit">Sair</button>
+  <button type="submit">Sair</button>
 </form>

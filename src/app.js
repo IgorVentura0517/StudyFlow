@@ -3,6 +3,7 @@ const path = require("path");
 const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middlewares/authMiddleware");
+const disciplinaRoutes = require("./routes/disciplinaRoutes");
 
 const app = express();
 
@@ -28,3 +29,5 @@ app.get("/dashboard", authMiddleware,
   (req, res) =>{
     res.render("dashboard", {usuario: req.session.usuario});
   });
+
+app.use(disciplinaRoutes);

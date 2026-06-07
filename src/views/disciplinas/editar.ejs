@@ -1,0 +1,10 @@
+<h1>Editar disciplina</h1>
+
+<form action="/disciplinas/editar/<%= disciplina.id %>" method="POST">
+  <input type="text" name="nome" value="<%= disciplina.nome %>" required>
+  <textarea name="descricao"><%= disciplina.descricao %></textarea>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<a href="/disciplinas">Voltar</a>
