@@ -4,11 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Disciplinas - StudyFlow</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body class="dashboard-body">
 
   <div class="dashboard-layout">
@@ -36,6 +39,7 @@
       <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
         <div class="alert alert-success"><%= mensagemSucesso %></div>
       <% } %>
+
       <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
         <div class="alert alert-error"><%= mensagemErro %></div>
       <% } %>
@@ -47,18 +51,10 @@
         </div>
       </section>
 
-      <section class="card-shadow" style="padding: 1.5rem 2rem; margin-bottom: 2rem;">
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2 style="font-size: 1.1rem; color: #111827;">Lista de disciplinas</h2>
-          <a href="/disciplinas/nova" class="btn-primary" style="
-            display: inline-block;
-            width: auto;
-            padding: 0.6rem 1.25rem;
-            font-size: 0.9rem;
-            text-decoration: none;
-            text-align: center;
-          ">+ Nova disciplina</a>
+      <section class="tasks-section card-shadow">
+        <div class="section-header">
+          <h2>Lista de disciplinas</h2>
+          <a href="/disciplinas/nova" class="btn-new">+ Nova disciplina</a>
         </div>
 
         <% if (disciplinas.length === 0) { %>
@@ -66,46 +62,34 @@
             <p>Nenhuma disciplina cadastrada ainda.</p>
           </div>
         <% } else { %>
-          <ul class="task-list">
-            <% disciplinas.forEach(disciplina => { %>
-              <li class="task-item">
-                <div class="task-info">
-                  <div class="task-details">
-                    <strong><%= disciplina.nome %></strong>
-                    <span class="task-subject"><%= disciplina.descricao || 'Sem descrição' %></span>
-                  </div>
-                </div>
-                <div style="display: flex; gap: 0.5rem; align-items: center;">
-                  <a href="/disciplinas/editar/<%= disciplina.id %>" style="
-                    padding: 0.4rem 1rem;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 0.5rem;
-                    color: #7c3aed;
-                    font-size: 0.875rem;
-                    font-weight: 500;
-                    text-decoration: none;
-                    transition: background 0.2s;
-                  ">Editar</a>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
 
-                  <form action="/disciplinas/excluir/<%= disciplina.id %>" method="POST">
-                    <button type="submit" style="
-                      padding: 0.4rem 1rem;
-                      border: 1px solid #fca5a5;
-                      border-radius: 0.5rem;
-                      background: transparent;
-                      color: #b91c1c;
-                      font-size: 0.875rem;
-                      font-weight: 500;
-                      cursor: pointer;
-                      transition: background 0.2s;
-                    ">Excluir</button>
-                  </form>
-                </div>
-              </li>
-            <% }) %>
-          </ul>
+              <tbody>
+                <% disciplinas.forEach(disciplina => { %>
+                  <tr>
+                    <td><%= disciplina.nome %></td>
+                    <td><%= disciplina.descricao || "Sem descrição" %></td>
+                    <td class="actions">
+                      <a href="/disciplinas/editar/<%= disciplina.id %>" class="btn-edit">Editar</a>
+
+                      <form action="/disciplinas/excluir/<%= disciplina.id %>" method="POST">
+                        <button type="submit" class="btn-delete">Excluir</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
         <% } %>
-
       </section>
 
       <footer class="dashboard-footer">
@@ -113,6 +97,7 @@
       </footer>
 
     </main>
+
   </div>
 
 </body>

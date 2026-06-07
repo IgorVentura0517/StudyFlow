@@ -1,67 +1,110 @@
-<link rel="stylesheet" href="/css/style.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarefas - StudyFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-body">
 
-<header>
-  <h1>StudyFlow</h1>
+  <div class="dashboard-layout">
 
-  <nav>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/disciplinas">Disciplinas</a>
-    <a href="/tarefas">Tarefas</a>
-  </nav>
-</header>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Study<span class="sub">Flow</span></h2>
+      </div>
 
-<main>
-  <% if (mensagemSucesso) { %>
-  <p class="alert alert-success"><%= mensagemSucesso %></p>
-  <% } %>
+      <nav class="sidebar-nav">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/disciplinas">Disciplinas</a>
+        <a href="/tarefas" class="active">Tarefas</a>
+      </nav>
 
-  <% if (mensagemErro) { %>
-    <p class="alert alert-error"><%= mensagemErro %></p>
-  <% } %>
-  <section class="card">
-    <h2>Minhas tarefas</h2>
-    <a href="/tarefas/nova">Nova tarefa</a>
-  </section>
+      <div class="sidebar-footer">
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn-logout">Sair da conta</button>
+        </form>
+      </div>
+    </aside>
 
-  <section class="card">
-    <table>
-      <thead>
-        <tr>
-          <th>Título</th>
-          <th>Disciplina</th>
-          <th>Status</th>
-          <th>Prioridade</th>
-          <th>Entrega</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
+    <main class="main-content">
 
-      <tbody>
-        <% tarefas.forEach(tarefa => { %>
-          <tr>
-            <td><%= tarefa.titulo %></td>
-            <td><%= tarefa.disciplina_nome %></td>
-            <td><%= tarefa.status %></td>
-            <td><%= tarefa.prioridade %></td>
-            <td><%= tarefa.data_entrega ? tarefa.data_entrega.toLocaleDateString("pt-BR") : "Sem data" %></td>
-            <td>
-              <a href="/tarefas/editar/<%= tarefa.id %>">Editar</a>
+      <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
+        <div class="alert alert-success"><%= mensagemSucesso %></div>
+      <% } %>
 
-              <form action="/tarefas/concluir/<%= tarefa.id %>" method="POST">
-                <button type="submit">Concluir</button>
-              </form>
+      <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+        <div class="alert alert-error"><%= mensagemErro %></div>
+      <% } %>
 
-              <form action="/tarefas/excluir/<%= tarefa.id %>" method="POST">
-                <button type="submit">Excluir</button>
-              </form>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </section>
-</main>
+      <section class="welcome-banner card-shadow">
+        <div class="welcome-text">
+          <h1>Minhas Tarefas</h1>
+          <p>Organize suas atividades, prazos e prioridades.</p>
+        </div>
+      </section>
 
-<footer>
-  <p>StudyFlow © 2026</p>
-</footer>
+      <section class="tasks-section card-shadow">
+        <div class="section-header">
+          <h2>Lista de tarefas</h2>
+          <a href="/tarefas/nova" class="btn-new">+ Nova tarefa</a>
+        </div>
+
+        <% if (tarefas.length === 0) { %>
+          <div class="empty-state">
+            <p>Nenhuma tarefa cadastrada ainda.</p>
+          </div>
+        <% } else { %>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Disciplina</th>
+                  <th>Status</th>
+                  <th>Prioridade</th>
+                  <th>Entrega</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% tarefas.forEach(tarefa => { %>
+                  <tr>
+                    <td><%= tarefa.titulo %></td>
+                    <td><%= tarefa.disciplina_nome %></td>
+                    <td><%= tarefa.status %></td>
+                    <td><%= tarefa.prioridade %></td>
+                    <td><%= tarefa.data_entrega ? tarefa.data_entrega.toLocaleDateString("pt-BR") : "Sem data" %></td>
+                    <td class="actions">
+                      <a href="/tarefas/editar/<%= tarefa.id %>" class="btn-edit">Editar</a>
+
+                      <form action="/tarefas/concluir/<%= tarefa.id %>" method="POST">
+                        <button type="submit" class="btn-complete">Concluir</button>
+                      </form>
+
+                      <form action="/tarefas/excluir/<%= tarefa.id %>" method="POST">
+                        <button type="submit" class="btn-delete">Excluir</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </section>
+
+      <footer class="dashboard-footer">
+        <p>StudyFlow © 2026</p>
+      </footer>
+
+    </main>
+  </div>
+
+</body>
+</html>

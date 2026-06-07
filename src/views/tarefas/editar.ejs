@@ -1,61 +1,166 @@
-<link rel="stylesheet" href="/css/style.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Tarefa - StudyFlow</title>
 
-<header>
-  <h1>StudyFlow</h1>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <nav>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/disciplinas">Disciplinas</a>
-    <a href="/tarefas">Tarefas</a>
-  </nav>
-</header>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<main>
-  <section class="card">
-    <h2>Editar tarefa</h2>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 
-    <form action="/tarefas/editar/<%= tarefa.id %>" method="POST" data-validar>
-      <label>Título</label>
-      <input type="text" name="titulo" value="<%= tarefa.titulo %>" required>
+<body class="dashboard-body">
 
-      <label>Descrição</label>
-      <textarea name="descricao"><%= tarefa.descricao %></textarea>
+  <div class="dashboard-layout">
 
-      <label>Disciplina</label>
-      <select name="disciplinaId" required>
-        <% disciplinas.forEach(disciplina => { %>
-          <option value="<%= disciplina.id %>" <%= disciplina.id === tarefa.disciplina_id ? "selected" : "" %>>
-            <%= disciplina.nome %>
-          </option>
-        <% }) %>
-      </select>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Study<span class="sub">Flow</span></h2>
+      </div>
 
-      <label>Status</label>
-      <select name="status" required>
-        <option value="Pendente" <%= tarefa.status === "Pendente" ? "selected" : "" %>>Pendente</option>
-        <option value="Em andamento" <%= tarefa.status === "Em andamento" ? "selected" : "" %>>Em andamento</option>
-        <option value="Concluída" <%= tarefa.status === "Concluída" ? "selected" : "" %>>Concluída</option>
-      </select>
+      <nav class="sidebar-nav">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/disciplinas">Disciplinas</a>
+        <a href="/tarefas" class="active">Tarefas</a>
+      </nav>
 
-      <label>Prioridade</label>
-      <select name="prioridade" required>
-        <option value="Baixa" <%= tarefa.prioridade === "Baixa" ? "selected" : "" %>>Baixa</option>
-        <option value="Média" <%= tarefa.prioridade === "Média" ? "selected" : "" %>>Média</option>
-        <option value="Alta" <%= tarefa.prioridade === "Alta" ? "selected" : "" %>>Alta</option>
-      </select>
+      <div class="sidebar-footer">
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn-logout">
+            Sair da conta
+          </button>
+        </form>
+      </div>
+    </aside>
 
-      <label>Data de entrega</label>
-      <input type="date" name="dataEntrega" value="<%= tarefa.data_entrega ? tarefa.data_entrega.toISOString().split('T')[0] : '' %>">
+    <main class="main-content">
 
-      <button type="submit">Atualizar</button>
-    </form>
+      <section class="welcome-banner card-shadow">
+        <div class="welcome-text">
+          <h1>Editar Tarefa</h1>
+          <p>Atualize as informações da atividade.</p>
+        </div>
+      </section>
 
-    <a href="/tarefas">Voltar</a>
-  </section>
-</main>
+      <section class="tasks-section card-shadow">
 
-<footer>
-  <p>StudyFlow © 2026</p>
-</footer>
+        <form
+          action="/tarefas/editar/<%= tarefa.id %>"
+          method="POST"
+          data-validar
+        >
 
-<script src="/js/validacao.js"></script>
+          <label>Título</label>
+          <input
+            type="text"
+            name="titulo"
+            value="<%= tarefa.titulo %>"
+            required
+          >
+
+          <label>Descrição</label>
+          <textarea
+            name="descricao"
+            rows="4"
+          ><%= tarefa.descricao %></textarea>
+
+          <label>Disciplina</label>
+          <select name="disciplinaId" required>
+
+            <% disciplinas.forEach(disciplina => { %>
+
+              <option
+                value="<%= disciplina.id %>"
+                <%= disciplina.id === tarefa.disciplina_id ? "selected" : "" %>
+              >
+                <%= disciplina.nome %>
+              </option>
+
+            <% }) %>
+
+          </select>
+
+          <label>Status</label>
+          <select name="status">
+
+            <option
+              value="Pendente"
+              <%= tarefa.status === "Pendente" ? "selected" : "" %>
+            >
+              Pendente
+            </option>
+
+            <option
+              value="Em andamento"
+              <%= tarefa.status === "Em andamento" ? "selected" : "" %>
+            >
+              Em andamento
+            </option>
+
+            <option
+              value="Concluída"
+              <%= tarefa.status === "Concluída" ? "selected" : "" %>
+            >
+              Concluída
+            </option>
+
+          </select>
+
+          <label>Prioridade</label>
+          <select name="prioridade">
+
+            <option
+              value="Baixa"
+              <%= tarefa.prioridade === "Baixa" ? "selected" : "" %>
+            >
+              Baixa
+            </option>
+
+            <option
+              value="Média"
+              <%= tarefa.prioridade === "Média" ? "selected" : "" %>
+            >
+              Média
+            </option>
+
+            <option
+              value="Alta"
+              <%= tarefa.prioridade === "Alta" ? "selected" : "" %>
+            >
+              Alta
+            </option>
+
+          </select>
+
+          <label>Data de Entrega</label>
+
+          <input
+            type="date"
+            name="dataEntrega"
+            value="<%= tarefa.data_entrega ? tarefa.data_entrega.toISOString().split('T')[0] : '' %>"
+          >
+
+          <button type="submit" class="btn-primary">
+            Atualizar Tarefa
+          </button>
+
+        </form>
+
+      </section>
+
+      <footer class="dashboard-footer">
+        <p>StudyFlow © 2026</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <script src="/js/validacao.js"></script>
+
+</body>
+</html>
