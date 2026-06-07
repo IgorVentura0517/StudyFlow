@@ -79,6 +79,23 @@ class Tarefa {
 
   return rows[0];
 }
+static async getProximasEntregas(usuarioId) {
+  const [rows] = await connection.query(
+    
+    SELECT
+      tarefas.*,
+      disciplinas.nome AS disciplina_nome
+    FROM tarefas
+    INNER JOIN disciplinas
+      ON tarefas.disciplina_id = disciplinas.id
+    WHERE tarefas.usuario_id = ?
+      AND tarefas.status != 'Concluída'
+      AND tarefas.data_entrega IS NOT NULL
+    ORDER BY tarefas.data_entrega ASC
+    LIMIT 5
+    ,
+    [usuarioId]
+  );
 }
 
 
