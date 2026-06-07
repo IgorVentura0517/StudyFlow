@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
+
 const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middlewares/authMiddleware");
 const disciplinaRoutes = require("./routes/disciplinaRoutes");
@@ -14,6 +15,8 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(session({
   secret: "studyflow_secret",
@@ -31,16 +34,19 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.redirect("/login");
+});
+
 app.use(authRoutes);
+
+app.get("/dashboard", authMiddleware, DashboardController.index);
+
+app.use(disciplinaRoutes);
+app.use(tarefaRoutes);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-app.get("/dashboard", authMiddleware, DashboardController.index);
-
-app.use(disciplinaRoutes);
-app.use(tarefaRoutes);
-app.use(express.static(path.join(__dirname, "../public")));
