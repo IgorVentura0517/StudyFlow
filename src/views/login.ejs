@@ -1,13 +1,43 @@
-<link rel="stylesheet" href="/css/style.css">
-<h1>Login</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AcaDuo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
-<form action="/login" method="POST" data-validar>
-  <input type="email" name="email" placeholder="E-mail" required>
-  <input type="password" name="senha" placeholder="Senha" required>
+  <header class="header-simple">
+    <h2>Aca<span class="sub">Duo</span></h2>
+  </header>
 
-  <button type="submit">Entrar</button>
-</form>
+  <main class="auth-container">
+    <div class="card-cadastro"> <h1>Bem-vindo!</h1>
+      <p class="h1-sub">Acesse sua conta para continuar seus estudos.</p>
 
-<a href="/cadastro">Criar conta</a>
+      <form action="/login" method="POST" data-validar>
+        <div class="form-group">
+          <input type="email" name="email" id="email" placeholder="E-mail" required>
+        </div>
+        
+        <div class="form-group">
+          <input type="password" name="senha" id="senha" placeholder="Senha" required>
+        </div>
 
-<script src="/js/validacao.js"></script>
+        <button type="submit" class="btn-primary">Entrar</button>
+      </form>
+
+      <div class="auth-footer">
+        <p style="color: #6b7280; font-size: 0.9rem;">Não tem uma conta?</p>
+        <a href="/cadastro" class="link-accent">Criar conta</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/validacao.js"></script>
+</body>
+</html>

@@ -1,80 +1,114 @@
-<link rel="stylesheet" href="/css/style.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - StudyFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-body">
 
-<header>
-  <h1>StudyFlow</h1>
+  <div class="dashboard-layout">
+    
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Study<span class="sub">Flow</span></h2>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/disciplinas">Disciplinas</a>
+        <a href="/tarefas">Tarefas</a>
+      </nav>
 
-  <nav>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/disciplinas">Disciplinas</a>
-    <a href="/tarefas">Tarefas</a>
-  </nav>
-</header>
+      <div class="sidebar-footer">
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn-logout">Sair da conta</button>
+        </form>
+      </div>
+    </aside>
 
-<main>
-  <% if (mensagemSucesso) { %>
-    <p class="alert alert-success"><%= mensagemSucesso %></p>
-  <% } %>
+    <main class="main-content">
+      
+      <% if (typeof mensagemSucesso !== 'undefined' && mensagemSucesso) { %>
+        <div class="alert alert-success"><%= mensagemSucesso %></div>
+      <% } %>
+      <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+        <div class="alert alert-error"><%= mensagemErro %></div>
+      <% } %>
 
-  <% if (mensagemErro) { %>
-    <p class="alert alert-error"><%= mensagemErro %></p>
-  <% } %>
+      <section class="welcome-banner card-shadow">
+        <div class="welcome-text">
+          <h1>Olá, <%= usuario.nome %>! 👋</h1>
+          <p>Que bom te ver por aqui. Vamos organizar seus estudos de hoje!</p>
+        </div>
+      </section>
 
-  <section class="card">
-    <h2>Bem-vindo</h2>
-    <p>Olá, <%= usuario.nome %>!</p>
-  </section>
+      <section class="dashboard-cards">
+        <article class="stat-card card-shadow">
+          <h3>Disciplinas</h3>
+          <p class="stat-number"><%= totalDisciplinas %></p>
+        </article>
 
-  <section class="dashboard-cards">
-    <article class="card">
-      <h3>Disciplinas</h3>
-      <p><%= totalDisciplinas %></p>
-    </article>
+        <article class="stat-card card-shadow">
+          <h3>Total de tarefas</h3>
+          <p class="stat-number"><%= resumoTarefas.total || 0 %></p>
+        </article>
 
-    <article class="card">
-      <h3>Total de tarefas</h3>
-      <p><%= resumoTarefas.total || 0 %></p>
-    </article>
+        <article class="stat-card card-shadow">
+          <h3>Pendentes</h3>
+          <p class="stat-number text-warning"><%= resumoTarefas.pendentes || 0 %></p>
+        </article>
 
-    <article class="card">
-      <h3>Pendentes</h3>
-      <p><%= resumoTarefas.pendentes || 0 %></p>
-    </article>
+        <article class="stat-card card-shadow">
+          <h3>Em andamento</h3>
+          <p class="stat-number text-primary"><%= resumoTarefas.em_andamento || 0 %></p>
+        </article>
 
-    <article class="card">
-      <h3>Em andamento</h3>
-      <p><%= resumoTarefas.em_andamento || 0 %></p>
-    </article>
+        <article class="stat-card card-shadow">
+          <h3>Concluídas</h3>
+          <p class="stat-number text-success"><%= resumoTarefas.concluidas || 0 %></p>
+        </article>
+      </section>
 
-    <article class="card">
-      <h3>Concluídas</h3>
-      <p><%= resumoTarefas.concluidas || 0 %></p>
-    </article>
-  </section>
+      <section class="tasks-section card-shadow">
+        <div class="tasks-header">
+          <h2>Próximas Entregas</h2>
+        </div>
 
-  <section class="card">
-    <h2>Próximas Entregas</h2>
+        <% if (!proximasEntregas || proximasEntregas.length === 0) { %>
+          <div class="empty-state">
+            <p>Nenhuma entrega cadastrada. Aproveite o descanso!</p>
+          </div>
+        <% } else { %>
+          <ul class="task-list">
+            <% proximasEntregas.forEach(tarefa => { %>
+              <li class="task-item">
+                <div class="task-info">
+                  <div class="task-checkbox"></div> <div class="task-details">
+                    <strong><%= tarefa.titulo %></strong>
+                    <span class="task-subject">
+                      <span class="subject-icon">📚</span> <%= tarefa.disciplina_nome %>
+                    </span>
+                  </div>
+                </div>
+                <div class="task-date">
+                  <%= tarefa.data_entrega ? tarefa.data_entrega.toLocaleDateString("pt-BR") : "Sem data" %>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </section>
 
-    <% if (!proximasEntregas || proximasEntregas.length === 0) { %>
-      <p>Nenhuma entrega cadastrada.</p>
-    <% } else { %>
-      <ul>
-        <% proximasEntregas.forEach(tarefa => { %>
-          <li>
-            <strong><%= tarefa.titulo %></strong>
-            (<%= tarefa.disciplina_nome %>)
-            -
-            <%= tarefa.data_entrega ? tarefa.data_entrega.toLocaleDateString("pt-BR") : "Sem data" %>
-          </li>
-        <% }) %>
-      </ul>
-    <% } %>
-  </section>
+      <footer class="dashboard-footer">
+        <p>StudyFlow © 2026</p>
+      </footer>
+    </main>
+  </div>
 
-  <form action="/logout" method="POST">
-    <button type="submit">Sair</button>
-  </form>
-</main>
-
-<footer>
-  <p>StudyFlow © 2026</p>
-</footer>
+</body>
+</html>
