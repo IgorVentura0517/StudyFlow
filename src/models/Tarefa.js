@@ -93,9 +93,11 @@ static async getProximasEntregas(usuarioId) {
       AND tarefas.data_entrega IS NOT NULL
     ORDER BY tarefas.data_entrega ASC
     LIMIT 5
-    ,
+    `,
     [usuarioId]
   );
+
+   return rows;
 }
 
 
