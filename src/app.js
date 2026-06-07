@@ -5,6 +5,7 @@ const authRoutes = require("./routes/authRoutes");
 const authMiddleware = require("./middlewares/authMiddleware");
 const disciplinaRoutes = require("./routes/disciplinaRoutes");
 const tarefaRoutes = require("./routes/tarefaRoutes");
+const DashboardController = require("./controllers/dashboardController");
 
 const app = express();
 
@@ -26,10 +27,7 @@ app.listen(3000, () => {
   console.log("Servidor rodando...");
 });
 
-app.get("/dashboard", authMiddleware, 
-  (req, res) =>{
-    res.render("dashboard", {usuario: req.session.usuario});
-  });
+app.get("/dashboard", authMiddleware, DashboardController.index);
 
 app.use(disciplinaRoutes);
 app.use(tarefaRoutes);

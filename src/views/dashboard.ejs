@@ -2,7 +2,16 @@
 
 <p>Olá, <%= usuario.nome %>!</p>
 
-<a href="/disciplinas">Minhas disciplinas</a>
+<h2>Resumo</h2>
+
+<p>Total de disciplinas: <%= totalDisciplinas %></p>
+<p>Total de tarefas: <%= resumoTarefas.total || 0 %></p>
+<p>Pendentes: <%= resumoTarefas.pendentes || 0 %></p>
+<p>Em andamento: <%= resumoTarefas.em_andamento || 0 %></p>
+<p>Concluídas: <%= resumoTarefas.concluidas || 0 %></p>
+
+<a href="/disciplinas">Minhas Disciplinas</a>
+<a href="/tarefas">Minhas Tarefas</a>
 
 <form action="/logout" method="POST">
   <button type="submit">Sair</button>

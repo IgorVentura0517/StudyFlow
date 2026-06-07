@@ -62,6 +62,25 @@ class Tarefa {
       [id, usuarioId]
     );
   }
+
+  static async getResumoByUser(usuarioId) {
+  const [rows] = await connection.query(
+    `
+    SELECT
+      COUNT(*) AS total,
+      SUM(status = 'Pendente') AS pendentes,
+      SUM(status = 'Em andamento') AS em_andamento,
+      SUM(status = 'Concluída') AS concluidas
+    FROM tarefas
+    WHERE usuario_id = ?
+    `,
+    [usuarioId]
+  );
+
+  return rows[0];
 }
+}
+
+
 
 module.exports = Tarefa;

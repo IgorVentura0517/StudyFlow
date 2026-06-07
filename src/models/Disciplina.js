@@ -41,6 +41,15 @@ class Disciplina {
       [id, usuarioId]
     );
   }
+
+  static async countByUser(usuarioId) {
+  const [rows] = await connection.query(
+    "SELECT COUNT(*) AS total FROM disciplinas WHERE usuario_id = ?",
+    [usuarioId]
+  );
+
+  return rows[0].total;
+}
 }
 
 module.exports = Disciplina;
