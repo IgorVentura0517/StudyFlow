@@ -1,29 +1,60 @@
 <link rel="stylesheet" href="/css/style.css">
-<h1>Minhas tarefas</h1>
 
-<a href="/tarefas/nova">Nova tarefa</a>
+<header>
+  <h1>StudyFlow</h1>
 
-<ul>
-  <% tarefas.forEach(tarefa => { %>
-    <li>
-      <strong><%= tarefa.titulo %></strong>
-      <p><%= tarefa.descricao %></p>
-      <p>Disciplina: <%= tarefa.disciplina_nome %></p>
-      <p>Status: <%= tarefa.status %></p>
-      <p>Prioridade: <%= tarefa.prioridade %></p>
-      <p>Entrega: <%= tarefa.data_entrega %></p>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/tarefas">Tarefas</a>
+  </nav>
+</header>
 
-      <a href="/tarefas/editar/<%= tarefa.id %>">Editar</a>
+<main>
+  <section class="card">
+    <h2>Minhas tarefas</h2>
+    <a href="/tarefas/nova">Nova tarefa</a>
+  </section>
 
-      <form action="/tarefas/concluir/<%= tarefa.id %>" method="POST">
-        <button type="submit">Concluir</button>
-      </form>
+  <section class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Disciplina</th>
+          <th>Status</th>
+          <th>Prioridade</th>
+          <th>Entrega</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
 
-      <form action="/tarefas/excluir/<%= tarefa.id %>" method="POST">
-        <button type="submit">Excluir</button>
-      </form>
-    </li>
-  <% }) %>
-</ul>
+      <tbody>
+        <% tarefas.forEach(tarefa => { %>
+          <tr>
+            <td><%= tarefa.titulo %></td>
+            <td><%= tarefa.disciplina_nome %></td>
+            <td><%= tarefa.status %></td>
+            <td><%= tarefa.prioridade %></td>
+            <td><%= tarefa.data_entrega ? tarefa.data_entrega.toLocaleDateString("pt-BR") : "Sem data" %></td>
+            <td>
+              <a href="/tarefas/editar/<%= tarefa.id %>">Editar</a>
 
-<a href="/dashboard">Voltar ao dashboard</a>
+              <form action="/tarefas/concluir/<%= tarefa.id %>" method="POST">
+                <button type="submit">Concluir</button>
+              </form>
+
+              <form action="/tarefas/excluir/<%= tarefa.id %>" method="POST">
+                <button type="submit">Excluir</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>StudyFlow © 2026</p>
+</footer>

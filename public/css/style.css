@@ -141,3 +141,34 @@ nav {
   display: flex;
   gap: 1rem;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #f1f5f9;
+}
+
+td form {
+  display: inline;
+}
+
+td button {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}

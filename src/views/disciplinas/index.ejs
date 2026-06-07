@@ -1,21 +1,50 @@
 <link rel="stylesheet" href="/css/style.css">
-<h1>Minhas disciplinas</h1>
 
-<a href="/disciplinas/nova">Nova disciplina</a>
+<header>
+  <h1>StudyFlow</h1>
 
-<ul>
-  <% disciplinas.forEach(disciplina => { %>
-    <li>
-      <strong><%= disciplina.nome %></strong>
-      <p><%= disciplina.descricao %></p>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/tarefas">Tarefas</a>
+  </nav>
+</header>
 
-      <a href="/disciplinas/editar/<%= disciplina.id %>">Editar</a>
+<main>
+  <section class="card">
+    <h2>Minhas disciplinas</h2>
+    <a href="/disciplinas/nova">Nova disciplina</a>
+  </section>
 
-      <form action="/disciplinas/excluir/<%= disciplina.id %>" method="POST">
-        <button type="submit">Excluir</button>
-      </form>
-    </li>
-  <% }) %>
-</ul>
+  <section class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
 
-<a href="/dashboard">Voltar ao dashboard</a>
+      <tbody>
+        <% disciplinas.forEach(disciplina => { %>
+          <tr>
+            <td><%= disciplina.nome %></td>
+            <td><%= disciplina.descricao || "Sem descrição" %></td>
+            <td>
+              <a href="/disciplinas/editar/<%= disciplina.id %>">Editar</a>
+
+              <form action="/disciplinas/excluir/<%= disciplina.id %>" method="POST">
+                <button type="submit">Excluir</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>StudyFlow © 2026</p>
+</footer>
