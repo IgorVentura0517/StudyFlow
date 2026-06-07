@@ -81,7 +81,7 @@ class Tarefa {
 }
 static async getProximasEntregas(usuarioId) {
   const [rows] = await connection.query(
-    
+    `
     SELECT
       tarefas.*,
       disciplinas.nome AS disciplina_nome
