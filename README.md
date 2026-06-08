@@ -4,16 +4,20 @@ Sistema Web para gerenciamento acadêmico desenvolvido com Node.js, Express, MyS
 O objetivo do projeto é auxiliar estudantes no controle de disciplinas, tarefas, prazos e atividades acadêmicas por meio de uma interface simples e responsiva.
 
 Demonstração
+
 Aplicação Online
 https://studyflow-j3z8.onrender.com
+
 Repositório
 https://github.com/IgorVentura0517/StudyFlow
 
 Sobre o Projeto
+
 O StudyFlow foi desenvolvido como projeto acadêmico com o propósito de aplicar conceitos de desenvolvimento web full stack, banco de dados, autenticação de usuários e arquitetura MVC.
 O sistema permite que cada usuário possua sua própria área de estudos, organizando disciplinas e tarefas de forma independente.
 
 Objetivos
+
 Organizar disciplinas acadêmicas.
 Controlar atividades e tarefas.
 Acompanhar prazos de entrega.
@@ -21,42 +25,48 @@ Gerenciar o progresso dos estudos.
 Aplicar conceitos modernos de desenvolvimento web.
 
 Funcionalidades
-Usuários
-Cadastro de usuários
-Login
-Logout
-Sessão autenticada
-Proteção de rotas
 
-Disciplinas
-Criar disciplina
-Listar disciplinas
-Editar disciplina
-Excluir disciplina
+Usuários,
+Cadastro de usuários,
+Login,
+Logout,
+Sessão autenticada,
+Proteção de rotas.
+
+Disciplinas:
+
+Criar disciplina,
+Listar disciplinas,
+Editar disciplina,
+Excluir disciplina.
 
 Tarefas
-Criar tarefa
-Listar tarefas
-Editar tarefa
-Excluir tarefa
-Marcar tarefa como concluída
+
+Criar tarefa,
+Listar tarefas,
+Editar tarefa,
+Excluir tarefa,
+Marcar tarefa como concluída.
 
 Dashboard
-Quantidade total de disciplinas
-Quantidade total de tarefas
-Tarefas pendentes
-Tarefas em andamento
-Tarefas concluídas
-Próximas entregas
+
+Quantidade total de disciplinas,
+Quantidade total de tarefas,
+Tarefas pendentes,
+Tarefas em andamento,
+Tarefas concluídas,
+Próximas entregas.
 
 Interface
-Layout moderno
-Design responsivo
-Feedback visual
-Navegação intuitiva
-Validação de formulários
+
+Layout moderno,
+Design responsivo,
+Feedback visual,
+Navegação intuitiva,
+Validação de formulários.
 
 Arquitetura
+
 O projeto foi desenvolvido utilizando o padrão MVC.
 Estrutura de Diretórios
 StudyFlow
@@ -79,6 +89,7 @@ StudyFlow
 └── README.md
 
 Tecnologias Utilizadas
+
 Backend
 Node.js
 Express.js
@@ -98,19 +109,22 @@ Render
 Railway
 
 Segurança
+
 O sistema implementa:
-Sessões autenticadas
-Proteção de rotas privadas
-Isolamento de dados por usuário
-Middleware de autenticação
-Variáveis de ambiente para credenciais
+Sessões autenticadas,
+Proteção de rotas privadas,
+Isolamento de dados por usuário,
+Middleware de autenticação,
+Variáveis de ambiente para credenciais.
 
 Requisitos
+
 Node.js 20+
 MySQL 8+
 Git
 
 Instalação Local
+
 Clonar repositório
 git clone https://github.com/IgorVentura0517/StudyFlow.git
 
@@ -139,33 +153,36 @@ http://localhost:3000
 
 
 Banco de Dados
+
 O sistema utiliza três tabelas principais:
-usuarios
-disciplinas
-tarefas
-Telas do Sistema
-Login
-Autenticação de usuários
-Cadastro
-Registro de novos usuários
-Dashboard
-Visão geral dos estudos
-Disciplinas
-Gerenciamento de disciplinas
-Tarefas
-Gerenciamento de atividades
+usuarios,
+disciplinas,
+tarefas,
+Telas do Sistema,
+Login,
+Autenticação de usuários,
+Cadastro,
+Registro de novos usuários,
+Dashboard,
+Visão geral dos estudos,
+Disciplinas,
+Gerenciamento de disciplinas,
+Tarefas,
+Gerenciamento de atividades.
 
 Melhorias Futuras
-Recuperação de senha
-Perfil do usuário
-Upload de arquivos
-Calendário acadêmico
-Dashboard avançado
-API REST
-Integração com Google Calendar
-validação via token para e-mails
+
+Recuperação de senha,
+Perfil do usuário,
+Upload de arquivos,
+Calendário acadêmico,
+Dashboard avançado,
+API REST,
+Integração com Google Calendar,
+validação via token para e-mails.
 
 Equipe
+
 Projeto desenvolvido por:
 Igor Ventura (RA: 1722540)
 Erick Ventura Gamberini (RA: 3099001 )
@@ -175,5 +192,9 @@ Fernando Alves Landim (RA:1794239 )
 Curso: Engenharia da Computação
 
 Licença
+
 Projeto desenvolvido para fins acadêmicos.
 Todos os direitos reservados aos autores.
+
+<img width="828" height="912" alt="image" src="https://github.com/user-attachments/assets/610fe762-59ee-4c2e-9859-fd64d07b4d29" />
+
