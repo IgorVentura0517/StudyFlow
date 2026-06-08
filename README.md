@@ -1,4 +1,5 @@
 StudyFlow
+
 Sistema Web para gerenciamento acadêmico desenvolvido com Node.js, Express, MySQL e EJS.
 O objetivo do projeto é auxiliar estudantes no controle de disciplinas, tarefas, prazos e atividades acadêmicas por meio de uma interface simples e responsiva.
 
