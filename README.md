@@ -33,7 +33,7 @@ Logout,
 Sessão autenticada,
 Proteção de rotas.
 
-Disciplinas:
+Disciplinas
 
 Criar disciplina,
 Listar disciplinas,
