@@ -1,30 +1,30 @@
-StudyFlow
+## StudyFlow
 
 Sistema Web para gerenciamento acadêmico desenvolvido com Node.js, Express, MySQL e EJS.
 
 O objetivo do projeto é auxiliar estudantes no controle de disciplinas, tarefas, prazos e atividades acadêmicas por meio de uma interface simples, moderna e responsiva.
 
-Demonstração
+## Demonstração
 - Aplicação Online
 https://studyflow-j3z8.onrender.com
 
 - Repositório
 https://github.com/IgorVentura0517/StudyFlow
 
-Sobre o Projeto
+## Sobre o Projeto
 
 O StudyFlow foi desenvolvido como projeto acadêmico com o propósito de aplicar conceitos de desenvolvimento web Full Stack, banco de dados relacionais, autenticação de usuários e arquitetura MVC.
 
 O sistema permite que cada usuário possua sua própria área de estudos, organizando disciplinas e tarefas de forma independente.
 
-Objetivos
+## Objetivos
 - Organizar disciplinas acadêmicas.
 - Controlar atividades e tarefas.
 - Acompanhar prazos de entrega.
 - Gerenciar o progresso dos estudos.
 - Aplicar conceitos modernos de desenvolvimento web.
 
-Funcionalidades
+## Funcionalidades
 Usuários
 - Cadastro de usuários.
 - Login.
@@ -60,7 +60,7 @@ Interface
 - Navegação intuitiva.
 - Validação de formulários.
 
-Arquitetura
+## Arquitetura
 
 O projeto foi desenvolvido utilizando o padrão MVC.
 
@@ -85,7 +85,7 @@ O projeto segue o padrão MVC.
 - package.json
 - README.md
 
-Tecnologias Utilizadas
+## Tecnologias Utilizadas
 Backend:
 - Node.js
 - Express.js
@@ -108,7 +108,7 @@ Deploy:
 - Render
 - Railway
 
-Segurança
+## Segurança
 
 O sistema implementa:
 
@@ -118,12 +118,12 @@ O sistema implementa:
 - Middleware de autenticação.
 - Variáveis de ambiente para armazenamento de credenciais.
 
-Requisitos: 
+## Requisitos: 
 - Node.js 20 ou superior.
 - MySQL 8 ou superior.
 - Git.
 
-Instalação Local
+## Instalação Local
 
 Clonar o repositório
 - git clone https://github.com/IgorVentura0517/StudyFlow.git
@@ -150,7 +150,7 @@ Iniciar aplicação
 Acessar
 - http://localhost:3000
   
-Banco de Dados
+## Banco de Dados
 
 O sistema utiliza três tabelas principais:
 
@@ -163,7 +163,7 @@ Responsável pelo armazenamento das disciplinas vinculadas aos usuários.
 - tarefas
 Responsável pelo armazenamento das tarefas vinculadas às disciplinas e usuários.
 
-Telas do Sistema
+## Telas do Sistema
 - Login
 Tela de autenticação dos usuários.
 
@@ -180,7 +180,7 @@ Gerenciamento completo de disciplinas.
 Gerenciamento completo de tarefas.
 
 
-Melhorias Futuras
+## Melhorias Futuras
 - Recuperação de senha.
 - Perfil do usuário.
 - Upload de arquivos.
@@ -192,7 +192,7 @@ Melhorias Futuras
 - Sistema de notificações.
 - Aplicativo mobile.
 
-Equipe
+## Equipe
 
 Projeto desenvolvido por:
 
@@ -204,7 +204,7 @@ Projeto desenvolvido por:
 
 Curso: Engenharia da Computação
 
-Licença
+## Licença
 
 Projeto desenvolvido para fins acadêmicos.
 
